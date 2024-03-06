@@ -1,0 +1,18 @@
+
+	SELECT 
+		a.FechaAjuste,
+		strftime('%s', a.FechaAjuste) as 'time',
+		a.Pago,
+		a.Cambio,
+		ap.Cantidad
+		
+	FROM 
+		AjustesProductos ap 
+		JOIN Ajustes a ON a.Id = ap.AjusteId 
+		JOIN productos p on ap.ProductoId = p.id
+	WHERE TipoAjuste = 0 
+	
+GROUP BY ap.Id ORDER BY a.FechaAjuste DESC
+
+
+--AND time >= $__from AND time < $__to 
